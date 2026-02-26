@@ -12,8 +12,6 @@ from os import getenv
 from pathlib import Path
 
 from agno.os import AgentOS
-
-# from agents.knowledge_agent import knowledge_agent
 from agents.mcp_agent import mcp_agent
 from fastapi import FastAPI
 from db import get_postgres_db
@@ -23,6 +21,7 @@ app: FastAPI = FastAPI(
     title="Custom FastAPI App",
     version="1.0.0",
 )
+
 
 # Add your own routes
 @app.post("/customers")
@@ -41,8 +40,6 @@ async def get_customers():
     ]
 
 
-
-
 # ---------------------------------------------------------------------------
 # Create AgentOS
 # ---------------------------------------------------------------------------
@@ -51,7 +48,7 @@ agent_os = AgentOS(
     tracing=True,
     scheduler=True,
     db=get_postgres_db(),
-    agents=[ mcp_agent],
+    agents=[mcp_agent],
     config=str(Path(__file__).parent / "config.yaml"),
     base_app=app,
 )

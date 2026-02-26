@@ -9,7 +9,6 @@ Run:
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIResponses
 from agno.models.google import Gemini
 from agno.tools.mcp import MCPTools
 
@@ -47,8 +46,7 @@ You are a helpful assistant with access to external tools via MCP (Model Context
 mcp_agent = Agent(
     id="mcp-agent",
     name="MCP Agent",
-    # model=OpenAIResponses(id="gpt-5.2"),
-    model= Gemini(id="gemini-2.5-flash"),
+    model=Gemini(id="gemini-2.5-flash"),
     db=agent_db,
     tools=[MCPTools(url="https://docs.agno.com/mcp")],
     instructions=instructions,

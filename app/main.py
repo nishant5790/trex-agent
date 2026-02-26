@@ -8,7 +8,6 @@ Run:
     python -m app.main
 """
 
-from os import getenv
 from pathlib import Path
 
 from agno.os import AgentOS

@@ -17,6 +17,7 @@ dependencies = [
   "opentelemetry-api",
   "opentelemetry-sdk",
   "openinference-instrumentation-agno",
+  "google-genai>=1.65.0",
 ]
 
 [project.optional-dependencies]

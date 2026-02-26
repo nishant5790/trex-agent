@@ -15,7 +15,8 @@ def build_db_url() -> str:
     Uses the psycopg3 driver so SQLAlchemy does not require psycopg2.
     """
     # Prefer a full DATABASE_URL if provided (e.g. from Render)
-    # database_url = getenv("DATABASE_URL")
+    database_url = getenv("DATABASE_URL")
+    return database_url
     # if database_url:
     #     # Normalize scheme for SQLAlchemy + psycopg3
     #     if database_url.startswith("postgres://"):
@@ -31,7 +32,6 @@ def build_db_url() -> str:
     # host = getenv("DB_HOST", "localhost")
     # port = getenv("DB_PORT", "5432")
     # database = getenv("DB_DATABASE", "ai")
-    return "postgresql+psycopg://ai:uvZiJQwHNpPepZOEK6XsnoIJCLMSUV18@dpg-d6ga22ngi27c73fpgodg-a.oregon-postgres.render.com/ai_obey"
     # return f"{driver}://{user}:{password}@{host}:{port}/{database}"
 
 

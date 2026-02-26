@@ -16,7 +16,7 @@ from agno.os import AgentOS
 # from agents.knowledge_agent import knowledge_agent
 from agents.mcp_agent import mcp_agent
 from fastapi import FastAPI
-# from db import get_postgres_db
+from db import get_postgres_db
 
 # Create custom FastAPI app
 app: FastAPI = FastAPI(
@@ -48,9 +48,9 @@ async def get_customers():
 # ---------------------------------------------------------------------------
 agent_os = AgentOS(
     name="AgentOS",
-    # tracing=True,
+    tracing=True,
     scheduler=True,
-    # db=get_postgres_db(),
+    db=get_postgres_db(),
     agents=[ mcp_agent],
     config=str(Path(__file__).parent / "config.yaml"),
     base_app=app,

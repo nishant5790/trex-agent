@@ -12,12 +12,12 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIResponses
 from agno.tools.mcp import MCPTools
 
-from db import get_postgres_db
+# from db import get_postgres_db
 
 # ---------------------------------------------------------------------------
 # Setup
 # ---------------------------------------------------------------------------
-agent_db = get_postgres_db()
+# agent_db = get_postgres_db()
 
 # ---------------------------------------------------------------------------
 # Agent Instructions
@@ -47,7 +47,7 @@ mcp_agent = Agent(
     id="mcp-agent",
     name="MCP Agent",
     model=OpenAIResponses(id="gpt-5.2"),
-    db=agent_db,
+    # db=agent_db,
     tools=[MCPTools(url="https://docs.agno.com/mcp")],
     instructions=instructions,
     enable_agentic_memory=True,

@@ -10,15 +10,29 @@ from urllib.parse import quote
 
 
 def build_db_url() -> str:
-    """Build database URL from environment variables."""
-    driver = getenv("DB_DRIVER", "postgresql+psycopg")
-    user = getenv("DB_USER", "ai")
-    password = quote(getenv("DB_PASS", "ai"), safe="")
-    host = getenv("DB_HOST", "localhost")
-    port = getenv("DB_PORT", "5432")
-    database = getenv("DB_DATABASE", "ai")
+    """Build database URL from environment variables or DATABASE_URL.
 
-    return f"{driver}://{user}:{password}@{host}:{port}/{database}"
+    Uses the psycopg3 driver so SQLAlchemy does not require psycopg2.
+    """
+    # Prefer a full DATABASE_URL if provided (e.g. from Render)
+    # database_url = getenv("DATABASE_URL")
+    # if database_url:
+    #     # Normalize scheme for SQLAlchemy + psycopg3
+    #     if database_url.startswith("postgres://"):
+    #         database_url = database_url.replace("postgres://", "postgresql+psycopg://", 1)
+    #     elif database_url.startswith("postgresql://") and "+psycopg" not in database_url:
+    #         database_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
+    #     return database_url
+
+    # # Fallback to individual DB_* env vars
+    # driver = getenv("DB_DRIVER", "postgresql+psycopg")
+    # user = getenv("DB_USER", "ai")
+    # password = quote(getenv("DB_PASS", "ai"), safe="")
+    # host = getenv("DB_HOST", "localhost")
+    # port = getenv("DB_PORT", "5432")
+    # database = getenv("DB_DATABASE", "ai")
+    return "postgresql+psycopg://ai:uvZiJQwHNpPepZOEK6XsnoIJCLMSUV18@dpg-d6ga22ngi27c73fpgodg-a.oregon-postgres.render.com/ai_obey"
+    # return f"{driver}://{user}:{password}@{host}:{port}/{database}"
 
 
 db_url = build_db_url()

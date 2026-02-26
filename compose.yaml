@@ -1,18 +1,18 @@
 services:
-  agentos-db:
-    image: agnohq/pgvector:18
-    container_name: agentos-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${DB_USER:-ai}
-      POSTGRES_PASSWORD: ${DB_PASS:-ai}
-      POSTGRES_DB: ${DB_DATABASE:-ai}
-    volumes:
-      - pgdata:/var/lib/postgresql
-    ports:
-      - "5432:5432"
-    networks:
-      - agentos
+#  agentos-db:
+#    image: agnohq/pgvector:18
+#    container_name: agentos-db
+#    restart: unless-stopped
+#    environment:
+#      POSTGRES_USER: ${DB_USER:-ai}
+#      POSTGRES_PASSWORD: ${DB_PASS:-ai}
+#      POSTGRES_DB: ${DB_DATABASE:-ai}
+#    volumes:
+#      - pgdata:/var/lib/postgresql
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - agentos
 
   agentos-api:
     build:
@@ -42,8 +42,10 @@ services:
       - PORT=8000
       # API keys
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-    depends_on:
-      - agentos-db
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+#    depends_on:
+#      - agentos-db
     networks:
       - agentos
     extra_hosts:

@@ -30,7 +30,7 @@ RUN chmod +x /app/scripts/entrypoint.sh
 
 USER app
 
-EXPOSE 10000
+EXPOSE 8000
 
 ENTRYPOINT ["/app/scripts/entrypoint.sh"]
 CMD ["chill"]
